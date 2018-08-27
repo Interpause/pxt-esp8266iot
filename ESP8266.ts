@@ -1,16 +1,4 @@
-
-/**
- * Use this file to define custom functions and blocks.
- * Read more at https://makecode.microbit.org
- */
-
-
-
-/**
- * Custom blocks
- */
 //% color=#0fbc11 icon="\uf1eb" weight=90
-
 namespace ESP8266_IoT {
     let tobesendstring = ""
 
@@ -27,11 +15,11 @@ namespace ESP8266_IoT {
             wifiTX,
             BaudRate.BaudRate9600
         )
-        basic.pause(10)
+        //basic.pause(10)
         serial.writeString("AT+CWMODE=1" + "\u000D" + "\u000A")
-        basic.pause(5000)
+        //basic.pause(5000)
         serial.writeString("AT+RST" + "\u000D" + "\u000A")
-        basic.pause(5000)
+        //basic.pause(5000)
         // Add code here
     }
 
@@ -51,7 +39,7 @@ namespace ESP8266_IoT {
                  + "\""
         
         serial.writeString(text + "\u000D" + "\u000A")
-        basic.pause(6000)
+        //basic.pause(6000)
     }
 
     /**
