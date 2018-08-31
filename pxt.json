@@ -1,14 +1,17 @@
 {
-    "name": "ESP8266_IoT",
-    "version": "1.0.1",
-    "description": "ESP8266 IoT package by ELECFREAKS, CLASSROOM and Tinkercademy. Modified by Interpause",
-    "license": "MIT",
+    "name": "PXT-ESP8266",
     "dependencies": {
-        "core": "*"
+        "core": "*",
+        "radio": "*"
     },
+    "description": "",
     "files": [
-        "README.md",
-        "ESP8266.ts"
-    ],
-    "public": true
+        "main.blocks",
+        "main.ts",
+        "init_config.ts",
+        "command_queue.ts",
+        "request_queue.ts",
+        "enums.ts",
+        "README.md"
+    ]
 }

@@ -1,0 +1,130 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <variables></variables>
+  <block type="pxt-on-start" x="0" y="0">
+    <statement name="HANDLER">
+      <block type="radio_set_group">
+        <value name="ID">
+          <shadow type="math_number">
+            <field name="NUM">4</field>
+          </shadow>
+        </value>
+        <next>
+          <block type="wifi_init">
+            <field name="wifiRX">SerialPin.P12</field>
+            <field name="wifiTX">SerialPin.P13</field>
+            <field name="mode">WifiMode.client</field>
+            <next>
+              <block type="basic_show_icon">
+                <field name="i">IconNames.Heart</field>
+                <next>
+                  <block type="device_while">
+                    <value name="COND">
+                      <shadow type="logic_boolean">
+                        <field name="BOOL">TRUE</field>
+                      </shadow>
+                      <block type="logic_negate">
+                        <value name="BOOL">
+                          <shadow type="logic_boolean">
+                            <field name="BOOL">TRUE</field>
+                          </shadow>
+                          <block type="wifi_connect">
+                            <value name="ssid">
+                              <shadow type="text">
+                                <field name="TEXT">wifirofl</field>
+                              </shadow>
+                            </value>
+                            <value name="key">
+                              <shadow type="text">
+                                <field name="TEXT">secret</field>
+                              </shadow>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <statement name="DO">
+                      <block type="device_pause">
+                        <value name="pause">
+                          <shadow type="math_number">
+                            <field name="NUM">1000</field>
+                          </shadow>
+                        </value>
+                      </block>
+                    </statement>
+                    <next>
+                      <block type="device_while">
+                        <value name="COND">
+                          <shadow type="logic_boolean">
+                            <field name="BOOL">TRUE</field>
+                          </shadow>
+                          <block type="logic_negate">
+                            <value name="BOOL">
+                              <shadow type="logic_boolean">
+                                <field name="BOOL">TRUE</field>
+                              </shadow>
+                              <block type="web_connect">
+                                <field name="slot">connectionSlot.alpha</field>
+                                <value name="url">
+                                  <shadow type="text">
+                                    <field name="TEXT">api.thingspeak.com</field>
+                                  </shadow>
+                                </value>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <statement name="DO">
+                          <block type="device_pause">
+                            <value name="pause">
+                              <shadow type="math_number">
+                                <field name="NUM">1000</field>
+                              </shadow>
+                            </value>
+                          </block>
+                        </statement>
+                        <next>
+                          <block type="basic_show_icon">
+                            <field name="i">IconNames.SmallDiamond</field>
+                            <next>
+                              <block type="send_data">
+                                <value name="write_api_key">
+                                  <shadow type="text">
+                                    <field name="TEXT">verysecret</field>
+                                  </shadow>
+                                </value>
+                                <value name="n1">
+                                  <block type="device_acceleration">
+                                    <field name="NAME">Dimension.X</field>
+                                  </block>
+                                </value>
+                                <value name="n2">
+                                  <block type="device_acceleration">
+                                    <field name="NAME">Dimension.Y</field>
+                                  </block>
+                                </value>
+                                <value name="n3">
+                                  <block type="device_acceleration">
+                                    <field name="NAME">Dimension.Z</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="basic_show_icon">
+                                    <field name="i">IconNames.Diamond</field>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>
