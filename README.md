@@ -19,7 +19,7 @@ So what are you waiting for? Dive right in!
 ## Documentation
 Most, if not all, of the package contents are annotated with Javadocs. The Makecode IDE will automatically give hints based on that. In [main.ts](main.ts) you will find a test example too.
 
-**DO NOTE: Both this package and original use Serial, meaning you cannot use it. I am working on a way to change that but it might be a while.**
+**DO NOTE: Both this version and the original package use Serial, meaning you cannot use it. I am working on a way to change that but it might be a while.**
 
 ## Changelog
 **I uploaded the package as soon as my test case worked using my framework so not everything here may be accurate.**
