@@ -19,7 +19,7 @@ So what are you waiting for? Dive right in!
 ## Documentation
 Most, if not all, of the package contents are annotated with Javadocs. The Makecode IDE will automatically give hints based on that. In [main.ts](main.ts) you will find a test example too.
 
-**DO NOTE: Both this version and the original package use Serial, meaning you cannot use it. I am working on a way to change that but it might be a while.**
+**DO NOTE: Both this version and the original package use the Serial package to communicate to the ESP8266, meaning you cannot use the Serial package at the same time to communicate to your computer or other devices. I am working on a way to change that but it might be a while.**
 
 ## Changelog
 **I uploaded the package as soon as my test case worked using my framework so not everything here may be accurate.**
@@ -29,9 +29,9 @@ Commands are sent to the ESP8266 over Serial and often are hard to handle. This 
 * Created the Command object for this system, which allows blacklisting and whitelisting replies, giving commands a timeout, seeing rejected replies and more. Go to [command_queue.ts](command_queue.ts) to see how it works.
 * Instead of fixed delays, reply from ESP8266 is used to determine when next command can be sent saving much time.
 * A queue system is used to make sure commands are sent to the module one by one. Below are the three insertion functions:
-  * `waitfor(cmd:string)` blocks till the module replies to the command, returning the reply.
-  * `command(cmd:string)` sends a command and forgets about it.
-  * `request(cmd:string)` sends a command and returns an ID that can be used to find it via `retrieve(id:number)` or `check(id:number)`.
+  * `waitfor(cmd:string):string` blocks till the module replies to the command.
+  * `command(cmd:string):void` sends a command and forgets about it.
+  * `request(cmd:string):number` sends a command and returns an ID that can be used to find it via `retrieve(id:number)` or `check(id:number)`.
 
 ### Minor
 * Allowed user to change wifi mode (client,hotspot both) for ESP8266. Created `enum wifiMode` for it.
