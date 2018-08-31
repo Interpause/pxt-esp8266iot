@@ -57,9 +57,9 @@ Commands are sent to the ESP8266 over Serial and often are hard to handle. This 
 10. Have a mesh network mode.
 
 ## Credits
-The [original ESP8266 package](https://github.com/elecfreaks/pxt-esp8266iot) was developed under the cooperation of [ELECFREAKS](https://www.elecfreaks.com/), [CLASSROOM](http://www.classroom.com.hk/) and [TINKERCADEMY](https://tinkercademy.com/). 
+The [original ESP8266 package](https://github.com/elecfreaks/pxt-esp8266iot) was developed under the cooperation of [ElecFreaks](https://www.elecfreaks.com/), [Classroom](http://www.classroom.com.hk/) and [Tinkeracademy](https://tinkercademy.com/). 
 
-This package is made mainly by [Interpause@Github](https://github.com/Interpause), currently an intern at Tinkercademy who was tasked to improve the original. It is however a total revamp inspired by the original package because he is "perfectionistic" and "fussy" to say the least.
+This package is made mainly by [Interpause@Github](https://github.com/Interpause), currently an intern at Tinkercademy who was tasked to improve the original. It is however a total revamp inspired by the original package because he is perfectionistic and fussy to say the least.
 
 I am really thankful to my mentor and my colleagues at TinkerTanker for being accommodating, and occasionally helping with debugging when I got stuck, as well as providing the Micro:bits and ESP8266 module required to develop this package.
 
