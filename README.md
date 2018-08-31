@@ -12,7 +12,7 @@ So what are you waiting for? Dive right in!
 ![Drawing of how to connect ESP8266 to microbit](microbit_to_ESP266_drawing.jpg)
 1. Unlike the picture in the introduction, most ESP8266 modules come with 8 pins. Follow the above image when connecting to the Micro:bit. It is much easier to use a [breakout board](https://tinkercademy.com/tutorials/microbit-breakout-board/) however.
     - During my testing I found USB power wasn't enough to power the ESP8266 module. You should plug in a battery as well.
-2. If using <a href="http://makecode.microbit.org">Micro:bit Makecode beta</a>, simply sign into Github on it after forking the package and you will be able to use it straight away.
+2. If using <a href="http://makecode.microbit.org/beta">Micro:bit Makecode beta</a>, simply sign into Github on it after forking the package and you will be able to use it straight away.
 3. Else, follow the instructions <a href="https://makecode.microbit.org/offline">here</a>. Afterwards, clone the package and drop the contents into your project folder.
 4. Lastly, official documentation of the ESP8266, including the list of commands, can be found [here](https://www.espressif.com/en/support/download/documents?keys=&field_type_tid%5B%5D=14).
 
