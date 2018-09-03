@@ -1,6 +1,6 @@
 # Microbit Wifi Package for ESP8266 module
 ## Introduction
-![Image of ESP8266 Module](ESP8266_picture.png)
+![Image of ESP8266 Module](pics/ESP8266_picture.png)
 
 ESP8266 is an [~$5 wifi module](https://www.elecfreaks.com/estore/esp8266-serial-wifi-module.html), used in many tinkering projects to provide wifi to controller boards. This specific package is meant for [Microsoft's PXT for Micro:bit](https://makecode.microbit.org/) and comes with a good range of custom blocks to make your life easier, especially since there currently is little Micro:bit support for the ESP8266.
 
@@ -9,7 +9,7 @@ It features fairly well-laid foundational code, built on different transport lay
 So what are you waiting for? Dive right in!
 
 ## Setup
-![Drawing of how to connect ESP8266 to microbit](microbit_to_ESP266_drawing.jpg)
+![Drawing of how to connect ESP8266 to microbit](pics/microbit_to_ESP266_drawing.jpg)
 1. Unlike the picture in the introduction, most ESP8266 modules come with 8 pins. Follow the above image when connecting to the Micro:bit. It is much easier to use a [breakout board](https://tinkercademy.com/tutorials/microbit-breakout-board/) however.
     - During my testing I found USB power wasn't enough to power the ESP8266 module. You should plug in a battery as well.
 2. If using <a href="http://makecode.microbit.org/beta">Micro:bit Makecode beta</a>, simply sign into Github on it after forking the package and you will be able to use it straight away.
