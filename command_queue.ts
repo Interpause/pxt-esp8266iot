@@ -30,8 +30,8 @@ class Command {
         this.msg = msg
         this.whitelist = (whitelist == null) ? [] : whitelist
         this.blacklist = (blacklist == null) ? [] : blacklist
-        this.reply = 'null'
-        this.rejected = 'null'
+        this.reply = null
+        this.rejected = null
         this.seen = clear_immediately
         this.timein = -1
         this.timeout = timeout
@@ -49,7 +49,7 @@ class Command {
     }
     /** Returns latest accepted reply. */
     getReply(): string {
-        if (this.reply != 'null') this.seen = true
+        if (this.reply != null) this.seen = true
         return this.reply
     }
     /** Returns latest rejected reply. */
@@ -89,13 +89,15 @@ basic.forever(function () {
     if (cmd_queue.length != 0) {
         cmd_queue[0].update()
         if (cmd_queue[0].timein == -1) cmd_queue[0].send()
-        if (cmd_queue[0].reply != 'null') cmd_cache.push(cmd_queue.shift())
+        if (cmd_queue[0].reply != null) cmd_cache.push(cmd_queue.shift())
     }
 })
 
+//Handler for serial input from ESP8266
 function sendReply(msg: string) {
-    //if (cmd_queue.length == 0) return //Use blacklists to avoid this
-    cmd_queue[0].setReply(msg)
+    if (msg.length == 8 && msg.substr(2, 6) == "CLOSED") Wifi.closed(parseInt(msg.charAt(0))) //ESP8266 announces when ports close
+    else if (msg.length>4 && msg.substr(0,4)=="+IPD") request_queue[parseInt(msg.charAt(5))][0].setResponse(msg) //Handles http response
+    else if (cmd_queue.length != 0) cmd_queue[0].setReply(msg) //Handles command feedback
     radio.sendString(msg)
     radio.sendString('\u000D' + '\u000A')
 }
@@ -108,6 +110,8 @@ let intermediate = ""
 let past_start = false
 let cur_char = ''
 serial.onDataReceived('\u000D' + '\u000A', () => {
+    //Below is simply to make sure serial inputs are received correctly.
+    //Probs should remove once i verify serial is working properly/use uBit.serial
     raw_input = serial.readString()
     if (raw_input.length > 0) {
         for (let i = 0; i < raw_input.length; i++) {
@@ -155,27 +159,27 @@ namespace Wifi {
         return cmd.id
     }
 
-    /** Retrieves reply from ESP8266 command by ID given from request(msg). Returns 'null' if ID doesn't exist and blocks until reply is gotten. */
+    /** Retrieves reply from ESP8266 command by ID given from request(msg). Returns null if ID doesn't exist and blocks until retrieval. */
     //% weight=99
     //% advanced=true
     //% blockId="wifi_esp8266_retrieve" block="retrieve reply by command id %id"
     export function retrieve(id: number): string {
         let cmd: Command
         for (let entry of cmd_cache) {
-            if (cmd.id == id) cmd = entry
+            if (entry.id == id) cmd = entry
         }
         for (let entry of cmd_queue) {
-            if (cmd.id == id) cmd = entry
+            if (entry.id == id) cmd = entry
         }
-        let reply = "null"
-        while (reply == "null") {
+        let reply:string = null
+        while (reply == null) {
             reply = cmd.getReply()
-            basic.pause(10)
+            basic.pause(20)
         }
         return reply
     }
 
-    /** Retrieves reply from ESP8266 command by ID given from request(msg). Returns 'null' if ID doesn't exist or if command hasn't been replied to. */
+    /** Retrieves reply from ESP8266 command by ID given from request(msg). Returns null if ID doesn't exist or if command hasn't been replied to. */
     //% weight=99
     //% advanced=true
     //% blockId="wifi_esp8266_check_request" block="check reply by command id %id"
@@ -183,7 +187,7 @@ namespace Wifi {
         for (let cmd of cmd_cache) {
             if (cmd.id == id) return cmd.getReply()
         }
-        return "null"
+        return null
     }
 
     /**
@@ -216,8 +220,8 @@ namespace Wifi {
         if (timeout == null) timeout = default_timeout
         let cmd = new Command(msg, whitelist, blacklist, timeout, false)
         cmd_queue.push(cmd)
-        let reply: string = 'null'
-        while (reply == 'null') {
+        let reply: string = null
+        while (reply == null) {
             reply = cmd.getReply()
             basic.pause(20)
         }

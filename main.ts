@@ -1,17 +1,17 @@
-radio.setGroup(4)
-Wifi.initWifi(SerialPin.P12, SerialPin.P13, WifiMode.client)
+let item = ""
+radio.setGroup(1)
+Wifi.initWifi(SerialPin.P0, SerialPin.P1, WifiMode.client)
 basic.showIcon(IconNames.Heart)
-while (!(Wifi.connectWifi("wifirofl", "secret"))) {
+while (!(Wifi.connectWifi("your-wifi", "your-passwd"))) {
     basic.pause(1000)
 }
-while (!(Wifi.connectSite("api.thingspeak.com", connectionSlot.alpha))) {
-    basic.pause(1000)
+while (true) {
+    basic.showIcon(IconNames.SmallDiamond)
+    item = Wifi.requestWaitfor(
+    httpMethod.GET,
+    "api.thingspeak.com/update?api_key=" + "not-my-key" + "&field1=" + input.acceleration(Dimension.X) + "&field2=" + input.acceleration(Dimension.Y) + "&field3=" + input.acceleration(Dimension.Z),
+    ""
+    )
+    basic.showIcon(IconNames.Diamond)
+    basic.pause(2000)
 }
-basic.showIcon(IconNames.SmallDiamond)
-Wifi.tosendtext(
-"verysecret",
-input.acceleration(Dimension.X),
-input.acceleration(Dimension.Y),
-input.acceleration(Dimension.Z)
-)
-basic.showIcon(IconNames.Diamond)

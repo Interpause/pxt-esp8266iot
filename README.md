@@ -4,7 +4,7 @@
 
 ESP8266 is an [~$5 wifi module](https://www.elecfreaks.com/estore/esp8266-serial-wifi-module.html), used in many tinkering projects to provide wifi to controller boards. This specific package is meant for [Microsoft's PXT for Micro:bit](https://makecode.microbit.org/) and comes with a good range of custom blocks to make your life easier, especially since there currently is little Micro:bit support for the ESP8266.
 
-It features fairly well-laid foundational code, built on different transport layers with different protocols to maximize the potential of this cheap but powerful Wifi module. The user can have precise control via the [command system](command_queue.ts), and on a higher level, good HTTP support with the [request system (WIP)](request_queue.ts). 
+It features fairly well-laid foundational code, built on different transport layers with different protocols to maximize the potential of this cheap but powerful Wifi module. The user can have precise control via the [command system](command_queue.ts), and on a higher level, good HTTP support with the [request system](request_queue.ts). 
 
 So what are you waiting for? Dive right in!
 
@@ -17,7 +17,7 @@ So what are you waiting for? Dive right in!
 4. Lastly, official documentation of the ESP8266, including the list of commands, can be found [here](https://www.espressif.com/en/support/download/documents?keys=&field_type_tid%5B%5D=14).
 
 ## Documentation
-Most, if not all, of the package contents are annotated with Javadocs. The Makecode IDE will automatically give hints based on that. In [main.ts](main.ts) you will find a test example too.
+Most, if not all, of the package contents are annotated with JSDocs. The Makecode IDE will automatically give hints based on that. In [main.ts](main.ts) you will find a test example too.
 
 **DO NOTE: Both this version and the original package use the Serial package to communicate to the ESP8266, meaning you cannot use the Serial package at the same time to communicate to your computer or other devices. I am working on a way to change that but it might be a while.**
 
@@ -33,28 +33,39 @@ Commands are sent to the ESP8266 over Serial and often are hard to handle. This 
   * `command(cmd:string):void` sends a command and forgets about it.
   * `request(cmd:string):number` sends a command and returns an ID that can be used to find it via `retrieve(id:number)` or `check(id:number)`.
 
+### Request System
+* All HTTP methods are supported.
+* 4 simultaneous requests are possible (4 queues).
+  * Currently however requests are put into the shortest queue.
+* Similar to Command System in how to make requests and how they are cleared, just on a higher layer.
+* Responses are forwarded to the Requests that made them.
+
 ### Minor
 * Allowed user to change wifi mode (client,hotspot both) for ESP8266. Created `enum wifiMode` for it.
 * Allowed for multiple simultanous connections. Created `enum connectionSlot` for it.
 * The enums were mainly created for readability. They can be found at [enums.ts](enums.ts).
 * Came up with a way to debug it. (Involves two Microbits and the Radio package)
 * Split code into multiple files for neatness.
-* Javadocs and comments, everywhere.
+* JSDocs (not Javadocs) and comments, everywhere.
 * The syntax for the GET request in the original ESP8266 package was wrong. Fixed that.
 * Found there was no need to restart the module during initialization. Removed that due to being time-consuming.
+* Fixed `retrieve(id:number)` and `check(id:number)`.
+* Message from ESP8266 about connections being closed now used to keep connection slots available better updated.
+* Moved pictures into /pics.
 
 ## Plans
-1. More bug testing.
+1. Bug testing, especially in regards to the different request types.
 2. Firmware compatibility testing. The commands I used should work across all versions but for your reference, I am using [ai-thinker-0.9.5.2-9600.bin](http://wiki.aprbrother.com/en/Firmware_For_ESP8266.html). 
     * Here is a [tutorial](https://nodemcu.readthedocs.io/en/latest/en/flash/) on how to flash the ESP8266 module.
-3. Support POST requests.
-4. Create the [request system](request_queue.ts) now that I know how to write a proper HTTP request and how to circumvent the Serial buffer limit.
-5. Some replies that don't come after commands have useful information. Given hardware limits, I might hardcode which replies are significiant.
-6. Expose uBit.serial so as to have multiple serial streams and not block serial when using package.
-7. Expose hotspot mode with functions.
-8. Figure out how to use the UDP protocol.
-9. Have a server mode.
-10. Have a mesh network mode.
+3. User-specified headers for requests.
+4. Bring in some form of JSON to handle more forms of data for requests.
+5. Decide if commands should be repeated till successful (like requests right now).
+6. Generate proper documentations and a Github wiki page.
+7. Expose uBit.serial so as to have multiple serial streams and not block serial when using package.
+8. Expose hotspot mode with functions.
+9. Figure out how to use the UDP protocol.
+10. Have a server mode.
+11. Have a mesh network mode.
 
 ## Credits
 The [original ESP8266 package](https://github.com/elecfreaks/pxt-esp8266iot) was developed under the cooperation of [ElecFreaks](https://www.elecfreaks.com/), [Classroom](http://www.classroom.com.hk/) and [Tinkeracademy](https://tinkercademy.com/). 
