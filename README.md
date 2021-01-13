@@ -1,4 +1,6 @@
 # Microbit Wifi Package for ESP8266 module
+In retrospect, my code for this project, while well planned, was also overkill. Nonetheless, this is some of my best work yet (being still quite young) and demonstrates me trying my best. The code is well annotated and organized even by my standards today. Unfortunately, I will be archiving this repository as I don't intend to work on it any further, though if I do happen to work with micro:bits in the future, perhaps I will unarchive and implement the rest of what I planned.
+
 ## Introduction
 ![Image of ESP8266 Module](pics/ESP8266_picture.png)
 
