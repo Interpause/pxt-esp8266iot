@@ -25,7 +25,7 @@ Most, if not all, of the package contents are annotated with JSDocs. The Makecod
 **I uploaded the package as soon as my test case worked using my framework so not everything here may be accurate.**
 
 ### Command System
-Commands are sent to the ESP8266 over Serial and often are hard to handle. This [system](command_queue.ts) is meant to simpify the process for users like you.
+Commands are sent to the ESP8266 over Serial and often are hard to handle. This [system](command_queue.ts) is meant to simpify the process.
 * Created the Command object for this system, which allows blacklisting and whitelisting replies, giving commands a timeout, seeing rejected replies and more. Go to [command_queue.ts](command_queue.ts) to see how it works.
 * Instead of fixed delays, reply from ESP8266 is used to determine when next command can be sent saving much time.
 * A queue system is used to make sure commands are sent to the module one by one. Below are the three insertion functions:
@@ -70,8 +70,6 @@ Commands are sent to the ESP8266 over Serial and often are hard to handle. This 
 ## Credits
 The [original ESP8266 package](https://github.com/elecfreaks/pxt-esp8266iot) was developed under the cooperation of [ElecFreaks](https://www.elecfreaks.com/), [Classroom](http://www.classroom.com.hk/) and [Tinkeracademy](https://tinkercademy.com/). 
 
-This package is made mainly by [Interpause@Github](https://github.com/Interpause), currently an intern at Tinkercademy who was tasked to improve the original. It is however a total revamp inspired by the original package because he is perfectionistic and fussy to say the least.
+This package was made by [Interpause@Github](https://github.com/Interpause) while interning at Tinkercademy when tasked to improve the original. The package ended up being a complete rewrite however.
 
 I am really thankful to my mentor and my colleagues at TinkerTanker for being accommodating, and occasionally helping with debugging when I got stuck, as well as providing the Micro:bits and ESP8266 module required to develop this package.
-
-The license for this package is the same as the original (MIT), I especially hope users can expand upon the groundwork I tried my best to lay well.
