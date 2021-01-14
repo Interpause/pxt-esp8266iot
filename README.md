@@ -1,5 +1,6 @@
 # Microbit Wifi Package for ESP8266 module
-In retrospect, my code for this project, while well planned, was also overkill. Nonetheless, this is some of my best work yet (being still quite young) and demonstrates me trying my best. The code is well annotated and organized even by my standards today. Unfortunately, I will be archiving this repository as I don't intend to work on it any further, though if I do happen to work with micro:bits in the future, perhaps I will unarchive and implement the rest of what I planned.
+
+Microbit Makecode extension to allow the microbit to use the ESP8266's wifi connection abilities.
 
 ## Introduction
 ![Image of ESP8266 Module](pics/ESP8266_picture.png)
@@ -75,3 +76,7 @@ The [original ESP8266 package](https://github.com/elecfreaks/pxt-esp8266iot) was
 This package was made by [Interpause@Github](https://github.com/Interpause) while interning at Tinkercademy when tasked to improve the original. The package ended up being a complete rewrite however.
 
 I am really thankful to my mentor and my colleagues at TinkerTanker for being accommodating, and occasionally helping with debugging when I got stuck, as well as providing the Micro:bits and ESP8266 module required to develop this package.
+
+## Archive note
+
+In retrospect, my code for this project, while well planned, was also overkill. Nonetheless, this is some of my best work yet (being still quite young) and demonstrates me trying my best. The code is well annotated and organized even by my standards today. Unfortunately, I will be archiving this repository as I don't intend to work on it any further, though if I do happen to work with micro:bits in the future, perhaps I will unarchive and implement the rest of what I planned.
